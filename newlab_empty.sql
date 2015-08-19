@@ -7,7 +7,7 @@ CREATE TABLE setups(id integer primary key, master_exp_id integer, title text, i
 CREATE TABLE setup_conf (id integer primary key, setup_id integer, sensor_id text, name text, FOREIGN KEY(setup_id) REFERENCES setups(id));
 CREATE TABLE consumers (id integer primary key, setup_id integer, exp_id integer, FOREIGN KEY(exp_id) REFERENCES experiments(id), FOREIGN KEY(setup_id) REFERENCES setups(id));
 CREATE TABLE sensors (id integer primary key, sensor_id text, sensor_name text, value_name text, si_notation text, si_name text,  max_range integer DEFAULT NULL, min_range integer DEFAULT NULL, error real, resolution bigint DEFAULT NULL);
-CREATE TABLE detections (id integer primary key, exp_id integer, time text, id_sensor integer, detection real, error text DEFAULT NULL, FOREIGN KEY(exp_id) REFERENCES experiments(id), FOREIGN KEY(id_sensor) REFERENCES sensors(id));
+CREATE TABLE detections (id integer primary key, exp_id integer, time text, sensor_id text, detection real, error text DEFAULT NULL, FOREIGN KEY(exp_id) REFERENCES experiments(id), FOREIGN KEY(sensor_id) REFERENCES sensors(sensor_id));
 CREATE TABLE plots (id integer primary key, exp_id integer, id_sensor_x integer, scales real, start text, stop text, foreign key (exp_id) references experiments(id), foreign key (id_sensor_x) references sensors(id));
 CREATE TABLE ordinate (id integer primary key, id_plot integer, id_sensor_y integer, scales real, start text, stop text, foreign key(id_plot) references plots(id), foreign key (id_sensor_y) references sensors(id));
 CREATE TABLE monitors (id integer primary key, exp_id integer, setup_id integer, uuid text, created text, deleted integer, FOREIGN KEY (exp_id) REFERENCES experiments(id), FOREIGN KEY (setup_id) REFERENCES setups (id) );
