@@ -1,0 +1,13 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE sessions (id integer primary key, session_key unique, name, DateStart, DateEnd, title, comments, expiry);
+INSERT INTO "sessions" VALUES(1,'123456','admin','','','Administration','','');
+CREATE TABLE experiments (id integer primary key, session_key, title, setup_id, DateStart_exp,DateEnd_exp, comments, FOREIGN KEY(session_key) REFERENCES sessions(session_key));
+CREATE TABLE setups(id integer primary key, master_exp_id, title, interval, amount, time_det, period, number_error, period_repeated_det, flag, FOREIGN KEY(master_exp_id) REFERENCES experiments(id) );
+CREATE TABLE setup_conf (id integer primary key, setup_id, sensor_id, name, FOREIGN KEY(setup_id) REFERENCES setups(id));
+CREATE TABLE consumers (id integer primary key, setup_id, exp_id, FOREIGN KEY(exp_id) REFERENCES experiments(id), FOREIGN KEY(setup_id) REFERENCES setups(id));
+CREATE TABLE sensors (id integer primary key, sensor_id, sensor_name, value_name, si_notation, si_name,  max_range, min_range, error);
+CREATE TABLE detections (id integer primary key, exp_id, time, id_sensor, detection, error, FOREIGN KEY(exp_id) REFERENCES experiments(id), FOREIGN KEY(id_sensor) REFERENCES sensors(id));
+CREATE TABLE plots (id integer primary key, exp_id, id_sensor_x, scales, start, stop, foreign key (exp_id) references experiments(id), foreign key (id_sensor_x) references sensors(id));
+CREATE TABLE ordinate (id integer primary key, id_plot, id_sensor_y, scales, start, stop, foreign key(id_plot) references plots(id), foreign key (id_sensor_y) references sensors(id));
+COMMIT;
