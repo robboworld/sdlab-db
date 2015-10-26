@@ -1,7 +1,7 @@
 PRAGMA foreign_keys=OFF;
 BEGIN TRANSACTION;
 CREATE TABLE sessions (id integer primary key, session_key text unique, name text, DateStart integer, DateEnd integer, title text, comments text, expiry integer);
-INSERT INTO "sessions" VALUES(1,'123456','admin','','','Администратор','Административная сессия','0');
+INSERT INTO "sessions" VALUES(1,'123456','admin','','','Administrator','Administrator session','0');
 CREATE TABLE experiments (id integer primary key, session_key text, title text, setup_id integer, DateStart_exp integer, DateEnd_exp integer, comments integer, FOREIGN KEY(session_key) REFERENCES sessions(session_key));
 CREATE TABLE setups(id integer primary key, master_exp_id integer, title text, interval integer, amount integer DEFAULT NULL, time_det integer DEFAULT NULL, period integer DEFAULT NULL, number_error integer DEFAULT NULL, period_repeated_det integer DEFAULT NULL, flag integer, FOREIGN KEY(master_exp_id) REFERENCES experiments(id) );
 CREATE TABLE setup_conf (id integer primary key, setup_id integer, sensor_id text, sensor_val_id integer, name text, FOREIGN KEY(setup_id) REFERENCES setups(id));
