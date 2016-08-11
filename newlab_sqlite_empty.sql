@@ -84,13 +84,15 @@ DROP TABLE IF EXISTS detections;
 CREATE TABLE detections (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	exp_id INTEGER,
+	mon_id INTEGER,
 	TIME TEXT,
 	sensor_id TEXT,
 	sensor_val_id INTEGER,
 	detection REAL,
 	error TEXT DEFAULT NULL,
 	FOREIGN KEY (exp_id) REFERENCES experiments(id),
-	FOREIGN KEY (sensor_id) REFERENCES sensors(sensor_id)
+	FOREIGN KEY (sensor_id) REFERENCES sensors(sensor_id),
+	FOREIGN KEY (mon_id) REFERENCES monitors(id)
 );
 
 DROP TABLE IF EXISTS plots;
@@ -122,13 +124,25 @@ CREATE TABLE ordinate (
 DROP TABLE IF EXISTS monitors;
 CREATE TABLE monitors (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	uuid TEXT,
 	exp_id INTEGER,
 	setup_id INTEGER,
-	uuid TEXT,
+	interval INTEGER,
+	remind INTEGER,
 	created TEXT,
-	deleted INTEGER,
+	stopat TEXT,
+	active INTEGER,
 	FOREIGN KEY (exp_id) REFERENCES experiments(id),
 	FOREIGN KEY (setup_id) REFERENCES setups(id)
+);
+
+DROP TABLE IF EXISTS monitors_values;
+CREATE TABLE monitors_values (
+	uuid TEXT,
+	name TEXT,
+	sensor TEXT,
+	valueidx INTEGER,
+	FOREIGN KEY (uuid) REFERENCES monitors(uuid)
 );
 
 COMMIT;
