@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS sessions;
 CREATE TABLE sessions (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	session_key TEXT UNIQUE,
-	NAME TEXT,
+	name TEXT,
 	DateStart INTEGER,
 	DateEnd INTEGER,
 	title TEXT,
@@ -52,7 +52,7 @@ CREATE TABLE setup_conf (
 	setup_id INTEGER,
 	sensor_id TEXT,
 	sensor_val_id INTEGER,
-	NAME TEXT,
+	name TEXT,
 	FOREIGN KEY (setup_id) REFERENCES setups(id)
 );
 
@@ -85,7 +85,7 @@ CREATE TABLE detections (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	exp_id INTEGER,
 	mon_id INTEGER,
-	TIME TEXT,
+	time TEXT,
 	sensor_id TEXT,
 	sensor_val_id INTEGER,
 	detection REAL,
