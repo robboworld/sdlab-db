@@ -142,6 +142,7 @@ CREATE TABLE monitors_values (
 	name TEXT,
 	sensor TEXT,
 	valueidx INTEGER,
+	UNIQUE (uuid, sensor, valueidx),
 	FOREIGN KEY (uuid) REFERENCES monitors(uuid)
 );
 
