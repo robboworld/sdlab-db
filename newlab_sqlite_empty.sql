@@ -1,4 +1,17 @@
-PRAGMA foreign_keys=OFF;
+PRAGMA automatic_index = ON;
+PRAGMA busy_timeout = 50000000;
+PRAGMA cache_size = 32768;
+PRAGMA cache_spill = OFF;
+PRAGMA foreign_keys = OFF;
+PRAGMA journal_mode = WAL;
+PRAGMA journal_size_limit = 67110000;
+PRAGMA locking_mode = NORMAL;
+PRAGMA page_size = 4096;
+PRAGMA recursive_triggers = ON;
+PRAGMA secure_delete = ON;
+PRAGMA synchronous = NORMAL;
+PRAGMA temp_store = MEMORY;
+PRAGMA wal_autocheckpoint = 16384;
 
 BEGIN TRANSACTION;
 
