@@ -141,7 +141,7 @@ CREATE TABLE monitors (
 	exp_id INTEGER,
 	setup_id INTEGER,
 	interval INTEGER,
-	remind INTEGER,
+	amount INTEGER,
 	created TEXT,
 	stopat TEXT,
 	active INTEGER,
