@@ -159,4 +159,12 @@ CREATE TABLE monitors_values (
 	FOREIGN KEY (uuid) REFERENCES monitors(uuid)
 );
 
+DROP TABLE IF EXISTS monitors_counters;
+CREATE TABLE monitors_counters (
+	uuid TEXT PRIMARY KEY,
+	done INTEGER,
+	err INTEGER,
+	FOREIGN KEY (uuid) REFERENCES monitors(uuid)
+);
+
 COMMIT;
