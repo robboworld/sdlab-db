@@ -47,6 +47,7 @@ CREATE TABLE setups (
 	id INTEGER PRIMARY KEY AUTOINCREMENT,
 	master_exp_id INTEGER,
 	session_key TEXT,
+	access INTEGER DEFAULT NULL,
 	title TEXT,
 	interval INTEGER,
 	amount INTEGER DEFAULT NULL,
@@ -54,7 +55,6 @@ CREATE TABLE setups (
 	period INTEGER DEFAULT NULL,
 	number_error INTEGER DEFAULT NULL,
 	period_repeated_det INTEGER DEFAULT NULL,
-	flag INTEGER,
 	FOREIGN KEY (master_exp_id) REFERENCES experiments(id),
 	FOREIGN KEY (session_key) REFERENCES sessions(session_key)
 );
