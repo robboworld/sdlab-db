@@ -1,6 +1,6 @@
 # sdlab-db
 
-sdlab database schema
+STEM lab database schema
 
 * sqlite
 * mysql (TODO)
